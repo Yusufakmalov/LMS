@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import AcademicYear, Kafedra
-from .forms import AcademicYearForm, KafedraForm
+from .models import AcademicYear, Kafedra, LessonTime
+from .forms import AcademicYearForm, KafedraForm, LessonTimeForm
 
 def academic_year(request):
     academic_years = AcademicYear.objects.all()
@@ -81,4 +81,40 @@ def kafedra_create(request):
     return render(request, 'structure/kafedra-update.html', {'form': form})
 
 
-    
+def lesson_time_list(request):
+    lesson_time = LessonTime.objects.all()
+    return render(request, 'structure/lesson_time.html', {'lesson_time': lesson_time})
+
+
+def lesson_time_detail(request, pk):
+    lesson_time = LessonTime.objects.get(pk=pk)
+    return render(request, 'structure/lesson-time-detail.html', {'lesson_time': lesson_time})
+
+
+def lesson_time_delete(request, pk):
+    lesson_time = LessonTime.objects.get(pk=pk)
+    lesson_time.delete()
+    return redirect('structure:lesson_time_list')
+
+def lesson_time_update(request, pk):
+    lesson_time = LessonTime.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = LessonTimeForm(request.POST, instance=lesson_time)
+        if form.is_valid():
+            form.save()
+            return redirect('structure:lesson_time_list')
+    else:
+        form = LessonTimeForm(instance=lesson_time)
+    return render(request, 'structure/lesson-time-update.html', {'form': form})
+
+def lesson_time_create(request):
+    if request.method == 'POST':
+        form = LessonTimeForm(request.POST)
+        if form.is_valid():
+            lesson_time = form.save(commit=False)
+            lesson_time.school = request.user.school
+            lesson_time.save()
+            return redirect('structure:lesson_time_list')
+    else:
+        form = LessonTimeForm()
+    return render(request, 'structure/lesson-time-update.html', {'form': form})

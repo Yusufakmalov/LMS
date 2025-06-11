@@ -33,6 +33,12 @@ class ScienceAdmin(DraggableMPTTAdmin):
     list_filter = (ActiveFilter, 'academic_year')
     search_fields = ('name', 'code')
 
+@admin.register(LessonTime)
+class LessonTimeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'start_time', 'end_time', 'is_active')
+    list_filter = (ActiveFilter,)
+    search_fields = ('name',)
+
 
 @admin.register(Kafedra)
 class KafedraAdmin(admin.ModelAdmin):

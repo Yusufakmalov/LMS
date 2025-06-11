@@ -1,5 +1,5 @@
 from django import forms
-from .models import AcademicYear, Kafedra
+from .models import AcademicYear, Kafedra, LessonTime
 from django.db.models import Q
 from account.models import CustomUser
 
@@ -35,3 +35,10 @@ class KafedraForm(forms.ModelForm):
                 Q(role__name__in=['dirrector', 'student', 'stylist', 'accountant', 'tutor']) |
                 ~Q(school=self.request.user.school)
             )
+
+class LessonTimeForm(forms.ModelForm):
+
+    class Meta:
+        model = LessonTime
+        fields = ['name', 'start_time', 'end_time', 'is_active']
+       
