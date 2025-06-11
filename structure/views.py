@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import AcademicYear, Kafedra, LessonTime
-from .forms import AcademicYearForm, KafedraForm, LessonTimeForm
+from .models import AcademicYear, Kafedra, LessonTime, Science
+from .forms import AcademicYearForm, KafedraForm, LessonTimeForm, ScienceForm
 
 def academic_year(request):
     academic_years = AcademicYear.objects.all()
