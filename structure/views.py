@@ -111,10 +111,44 @@ def lesson_time_create(request):
     if request.method == 'POST':
         form = LessonTimeForm(request.POST)
         if form.is_valid():
-            lesson_time = form.save(commit=False)
-            lesson_time.school = request.user.school
-            lesson_time.save()
+            form.save()
             return redirect('structure:lesson_time_list')
     else:
         form = LessonTimeForm()
     return render(request, 'structure/lesson-time-update.html', {'form': form})
+    
+    
+    
+def science_list(request):
+    science = Science.objects.all()
+    return render(request, 'science.html', {'science':science})
+    
+def science_detail(request, pk):
+    science = Science.objects.get(pk=pk)
+    return render(request, 'science_detail.html', {'science':science})
+    
+def science_delete(request, pk):
+    science = Science.objects.get(pk=pk)
+    science.delete()
+    return redirect('structure:science_list')
+    
+def science_update(request, pk):
+    science = Science.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ScienceForm(request.POST, instance=science)
+        if form.is_valid():
+            form.save()
+            return redirect('structure:science_list')
+    else:
+        form = ScienceForm(instance=science)
+    return render(request, 'science_update.html', {'form':form})
+    
+def science_create(request):
+    if request.methid == 'POST':
+        form = ScienceForm(request.POST)
+        if form.is_valid():
+            form.save
+            return redirect('structure:science_list')
+    else: 
+        form = ScienceForm()
+    return render(request, 'science_update.html', {'form':form})
