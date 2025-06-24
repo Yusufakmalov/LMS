@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="{% static 'assets/css/upload-image.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block content%}
     <div class="dashboard-main-body">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 class="fw-semibold mb-0">Kafedra Info</h6>
+        <h6 class="fw-semibold mb-0">View Kafedra</h6>
         <ul class="d-flex align-items-center gap-2">
           <li class="fw-medium">
             <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
@@ -25,15 +25,12 @@
       </div>
 
       <div class="row gy-4">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
           <div class="user-grid-card position-relative border radius-16 overflow-hidden bg-base h-100">
-            <!-- <img src="{% static 'assets/images/user-grid/user-grid-bg1.png' %}" alt="" class="w-100 object-fit-cover"> -->
             <div class="pb-24 ms-16 mb-24 me-16  mt--100">
               <div class="text-center border border-top-0 border-start-0 border-end-0">
-                <!-- <img src="{% if user.photo %}{{ user.photo.url }}{% else %}{% static 'assets/images/user.png' %}{% endif %}" alt=""
-                  class="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover"> -->
-                <!-- <h6 class="mb-0 mt-16">{{ academic_year.name }}</h6>
-                <span class="text-secondary-light mb-16">{{ academic_year.season }}</span> -->
+               <h6 class="mb-0 mt-16">{{ user.get_full_name }}</h6>
+                <span class="text-secondary-light mb-16">{{ user.email }}</span>
               </div>
               <div class="mt-24">
                 <h6 class="text-xl mb-16">Kafedra Info</h6>
@@ -43,23 +40,19 @@
                     <span class="w-70 text-secondary-light fw-medium">: {{ kafedra.name }}</span>
                   </li>
                   <li class="d-flex align-items-center gap-1 mb-12">
-                    <span class="w-30 text-md fw-semibold text-primary-light">Kafedras Code</span>
+                    <span class="w-30 text-md fw-semibold text-primary-light"> Kafedra's code</span>
                     <span class="w-70 text-secondary-light fw-medium">: {{ kafedra.code }}</span>
                   </li>
                   <li class="d-flex align-items-center gap-1 mb-12">
-                    <span class="w-30 text-md fw-semibold text-primary-light">Department User</span>
+                    <span class="w-30 text-md fw-semibold text-primary-light"> Department</span>
                     <span class="w-70 text-secondary-light fw-medium">: {{ kafedra.department_user }}</span>
                   </li>
                   <li class="d-flex align-items-center gap-1 mb-12">
-                    <span class="w-30 text-md fw-semibold text-primary-light">Status</span>
-                    {% if kafedra.is_active %}
-                    <span class="w-70 text-secondary-light fw-medium">: {{ 'Active' }}</span>
-                    {% else %}
-                    <span class="w-70 text-secondary-light fw-medium">: {{ 'Inactive' }}</span>
-                    {% endif %}
+                    <span class="w-30 text-md fw-semibold text-primary-light"> Active</span>
+                    <span class="w-70 text-secondary-light fw-medium">: {{ kafedra.is_active }}</span>
                   </li>
                   <li class="d-flex align-items-center gap-1 mb-12">
-                    <span class="w-30 text-md fw-semibold text-primary-light">School</span>
+                    <span class="w-30 text-md fw-semibold text-primary-light"> School</span>
                     <span class="w-70 text-secondary-light fw-medium">: {{ kafedra.school }}</span>
                   </li>
                 </ul>
@@ -69,10 +62,9 @@
         </div>
       </div>
     </div>
-
 {% endblock %}
 
-{% block js %}
+{% block my_scripts %}
   <script>
     // ======================== Upload Image Start =====================
     function readURL(input) {
@@ -108,4 +100,3 @@
     // ========================= Password Show Hide Js End ===========================
   </script>
 {% endblock %}
-

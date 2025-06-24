@@ -12,7 +12,7 @@
 {% block content%}
     <div class="dashboard-main-body">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 class="fw-semibold mb-0">View Kafedra</h6>
+        <h6 class="fw-semibold mb-0">View Academic Year</h6>
         <ul class="d-flex align-items-center gap-2">
           <li class="fw-medium">
             <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
@@ -21,7 +21,7 @@
             </a>
           </li>
           <li>-</li>
-          <li class="fw-medium">Kafedra</li>
+          <li class="fw-medium">Academic Year</li>
         </ul>
       </div>
 
@@ -34,7 +34,7 @@
                   <button class="nav-link d-flex align-items-center px-24 active" id="pills-edit-profile-tab"
                     data-bs-toggle="pill" data-bs-target="#pills-edit-profile" type="button" role="tab"
                     aria-controls="pills-edit-profile" aria-selected="true">
-                    Edit Kafedra
+                    Edit Academic Year
                   </button>
                 </li>
               </ul>
@@ -42,7 +42,7 @@
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-edit-profile" role="tabpanel"
                   aria-labelledby="pills-edit-profile-tab" tabindex="0">
-                  <h6 class="text-md text-primary-light mb-16">Kafedra</h6>
+                  <h6 class="text-md text-primary-light mb-16">Profile Image</h6>
                   <form method="post">
                     {% csrf_token %}
                     <div class="row">
@@ -55,9 +55,23 @@
                       </div>
                       <div class="col-sm-6">
                         <div class="mb-20">
-                          <label for="email" class="form-label fw-semibold text-primary-light text-sm mb-8">Kafedra's Code <span
+                          <label for="email" class="form-label fw-semibold text-primary-light text-sm mb-8">Season <span
                               class="text-danger-600">*</span></label>
-                          {% render_field form.code type="text" class="form-control radius-8" placeholder="kafedras code" %}
+                          {% render_field form.season type="text" class="form-control radius-8" placeholder="Season" %}
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="mb-20">
+                          <label for="number"
+                            class="form-label fw-semibold text-primary-light text-sm mb-8">Start date</label>
+                          {% render_field form.start_date type="date" class="form-control radius-8" %}
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="mb-20">
+                          <label for="depart" class="form-label fw-semibold text-primary-light text-sm mb-8">End date
+                            <span class="text-danger-600">*</span> </label>
+                          {% render_field form.end_date type="date" class="form-control radius-8"%}
                         </div>
                       </div>
                       <div class="col-sm-6">
@@ -69,14 +83,14 @@
                       </div>
                       <div class="col-sm-6">
                         <div class="mb-20">
-                          <label for="Language" class="form-label fw-semibold text-primary-light text-sm mb-8">Department user
+                          <label for="Language" class="form-label fw-semibold text-primary-light text-sm mb-8">Parent
                             <span class="text-danger-600">*</span> </label>
-                          {% render_field form.department_user type="date" class="form-control radius-8 form-select" %}
+                          {% render_field form.parent type="date" class="form-control radius-8 form-select" %}
                         </div>
                       </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center gap-3">
-                      <a href="{% url 'structure:kafedra_list' %}"
+                      <a href="{% url 'structure:academic_year_list' %}"
                         class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8">
                         Cancel
                       </a>
